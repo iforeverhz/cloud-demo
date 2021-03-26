@@ -1,0 +1,5 @@
+com\hky\consumer\client\UserClientImpl.class
+com\hky\consumer\client\UserClient.class
+com\hky\consumer\web\ConsumerController.class
+com\hky\ConsumerApplication.class
+com\hky\consumer\pojo\User.class

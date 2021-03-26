@@ -1,0 +1,37 @@
+server:
+  port: 10010
+
+spring:
+  application:
+    name: api-gateway #指定服务名
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+
+zuul:
+  retryable: true
+  routes:
+    user-service: # 这里是路由id，随意写
+      path: /user/** # 这里是映射路径
+      serviceId: user-service
+      strip-prefix: false #是否去除前缀 默认不去除 可以全局配置
+  prefix: /api
+#      url: http://127.0.0.1:8081 # 映射路径对应的实际url地址
+
+#简化 key:服务id value:映射路径
+#zuul:
+#  routes:
+#    user-service: /user-service/** #默认配置
+#  ignored-services:
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000 # 熔断超时时长：
